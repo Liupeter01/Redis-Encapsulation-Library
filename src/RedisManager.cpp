@@ -1,14 +1,15 @@
 #include<redis/RedisManager.hpp>
+#include<config/config.hpp>
 
 redis::details::RedisManager::RedisManager::RedisManager()
           : RedisManager(std::thread::hardware_concurrency() < 2? 2: std::thread::hardware_concurrency(),
-                                   "127.0.0.1",
-                                   6379,
-                                   "password")
+                         ServerConfig::get_instance()->Redis_ip_addr,
+                         ServerConfig::get_instance()->Redis_port,
+                         ServerConfig::get_instance()->Redis_passwd)
 {
           printf("[REDIS]: connecting to Redis service ip: %s, port: %u",
-                    "127.0.0.1",
-                    6379
+                    ServerConfig::get_instance()->Redis_ip_addr.c_str(),
+                    ServerConfig::get_instance()->Redis_port
           );
 }
 
