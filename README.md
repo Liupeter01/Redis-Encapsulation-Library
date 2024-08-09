@@ -14,18 +14,18 @@ Windows, Linux, MacOS(Intel & Apple Silicon M)
 
 ### Configure Setting
 
-you have to change redis host:port and passwd to your own!
-```c++
-redis::details::RedisManager::RedisManager::RedisManager()
-          : RedisManager(std::thread::hardware_concurrency() < 2? 2: std::thread::hardware_concurrency(),
-                                   "127.0.0.1",
-                                   6379,
-                                   "password")
+you need to editing config.ini file directory or editing CONFIG_HOME macro and move it to your root project
+
+```cmake
+target_compile_definitions(redis PUBLIC 
+    -DCONFIG_HOME=\"${CMAKE_CURRENT_SOURCE_DIR}/\"
+)
 ```
 
 ### Building Library
 
 ```bash
+git submodule update --init
 cmake -Bbuild -DCMAKE_BUILD_TYPE=Release
 cmake --build build --parallel [x]
 ```
