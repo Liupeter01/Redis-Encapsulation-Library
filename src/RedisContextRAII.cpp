@@ -183,10 +183,10 @@ bool redis::RedisContext::checkAuth(std::string_view sv)
 		  return status;
 }
 
-std::optional<redis::RedisContextWrapper> redis::RedisContext::operator->()
+std::optional<tools::RedisContextWrapper> redis::RedisContext::operator->()
 {
 		  if (isValid()) {
-					return RedisContextWrapper(m_redisContext.get());
+					return tools::RedisContextWrapper(m_redisContext.get());
 		  }
 		  return std::nullopt;
 }

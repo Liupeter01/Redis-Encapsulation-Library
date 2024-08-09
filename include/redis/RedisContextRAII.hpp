@@ -2,7 +2,7 @@
 #ifndef _REDISCONTEXTRAII_HPP_
 #define _REDISCONTEXTRAII_HPP_
 #include<string_view>
-#include<redis/RedisTools.hpp>
+#include<tools/tools.hpp>
 
 namespace redis {
 		  class RedisContext
@@ -41,14 +41,14 @@ namespace redis {
 					std::optional<std::string> leftPop(const std::string& key);
 					std::optional<std::string> rightPop(const std::string& key);
 
-					std::optional<RedisContextWrapper> operator->();
+					std::optional<tools::RedisContextWrapper> operator->();
 
 		  private:
 					/*if check error failed, m_valid will be set to false*/
 					bool m_valid;
 
 					/*redis context*/
-					RedisRAII<redisContext> m_redisContext;
+					tools::RedisSmartPtr <redisContext> m_redisContext;
 		  };
 }
 
