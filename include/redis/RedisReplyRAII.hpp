@@ -1,7 +1,7 @@
 #pragma once
 #ifndef _REDISREPLYRAII_HPP_
 #define _REDISREPLYRAII_HPP_
-#include<redis/RedisTools.hpp>
+#include<tools/tools.hpp>
 
 namespace redis
 {
@@ -37,7 +37,7 @@ namespace redis
 					std::optional<std::string> getMessage() const;
 
 		  private:
-					RedisRAII<redisReply> m_redisReply;
+					tools::RedisSmartPtr <redisReply> m_redisReply;
 		  };
 }
 
