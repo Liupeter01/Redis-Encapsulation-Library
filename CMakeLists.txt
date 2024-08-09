@@ -21,11 +21,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(REDIS_SOURCE_DIR src)
 
-# Specify output directories for binaries and libraries
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
@@ -46,6 +41,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(hiredis)
 
+add_subdirectory(inifile)
+
 target_link_libraries(redis PUBLIC 
     hiredis::hiredis
+    inicpp::inicpp
+)
+
+target_compile_definitions(redis PUBLIC 
+    -DCONFIG_HOME=\"${CMAKE_CURRENT_SOURCE_DIR}/\"
 )
