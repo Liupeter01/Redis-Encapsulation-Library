@@ -10,16 +10,16 @@ struct ServerConfig : public Singleton< ServerConfig>
 
 public:
           ~ServerConfig() = default;
-          std::string MySQL_ip_addr;
-          unsigned short MySQL_port;
-          std::string MySQL_passwd;
+          std::string Redis_ip_addr;
+          unsigned short Redis_port;
+          std::string Redis_passwd;
 
 private:
           ServerConfig(){
                 m_ini.load(CONFIG_HOME"config.ini");
-                MySQL_port = m_ini["MySQL"]["port"].as<unsigned short>();
-                MySQL_ip_addr = m_ini["MySQL"]["host"].as<std::string>();
-                MySQL_passwd = m_ini["MySQL"]["password"].as<std::string>();
+                Redis_port = m_ini["Redis"]["port"].as<unsigned short>();
+                Redis_ip_addr = m_ini["Redis"]["host"].as<std::string>();
+                Redis_passwd = m_ini["Redis"]["password"].as<std::string>();
           }
 
 private:
