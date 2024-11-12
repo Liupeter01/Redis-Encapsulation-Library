@@ -33,21 +33,10 @@ file(GLOB_RECURSE header_file CONFIGURE_DEPENDS include/redis/*.hpp  include/too
 add_library(redis OBJECT ${source_file} ${header_file})
 target_include_directories(redis PUBLIC include)
 
-#import boost 1.84.0 library
-FetchContent_Declare(
-    hiredis
-    GIT_REPOSITORY https://github.com/redis/hiredis.git
-    GIT_TAG v1.2.0
-)
-FetchContent_MakeAvailable(hiredis)
-
+add_subdirectory(hiredis)
 add_subdirectory(inifile)
 
 target_link_libraries(redis PUBLIC 
     hiredis::hiredis
     inicpp::inicpp
-)
-
-target_compile_definitions(redis PUBLIC 
-    -DCONFIG_HOME=\"${CMAKE_CURRENT_SOURCE_DIR}/\"
 )
