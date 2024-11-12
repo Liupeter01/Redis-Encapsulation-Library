@@ -4,7 +4,7 @@
 
 using RAII and C++17(optional & string_view)  features to implement a encapsulated redis library 
 
-import hiredis library as fetchcontent
+import hiredis and inifile library
 
 ## Developer Quick Start
 
@@ -14,7 +14,14 @@ Windows, Linux, MacOS(Intel & Apple Silicon M)
 
 ### Configure Setting
 
-you need to editing config.ini file directory or editing CONFIG_HOME macro and move it to your root project
+you need to create a config.ini file in the root directory and pasting this CONFIG_HOME macro to your root CMakeLists
+
+```ini
+[Redis]
+host=
+port=
+password=
+```
 
 ```cmake
 target_compile_definitions(redis PUBLIC 
